@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Details Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        .container {
+            background-color: yellow;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .container h2 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .form-group input[type="radio"] {
+            width: auto;
+        }
+        .form-group .radio-group {
+            display: flex;
+            justify-content: space-around;
+        }
+\        .form-group .radio-group label {
+            margin-right: 10px;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Personal Details Form</h2>
+        <form action="submit_form.php" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email ID:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label>Gender:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="gender" value="male" required> Male</label>
+                    <label><input type="radio" name="gender" value="female" required> Female</label>
+                                   </div>
+            </div>
+            <div class="form-group">
+                <label for="contact">Contact:</label>
+                <input type="tel" id="contact" name="contact" required>
+            </div>
+            <div class="form-group">
+                <label for="degree">Education Qualification (Degree):</label>
+                <select id="degree" name="degree" required>
+                    <option value="">Select your degree</option>
+                    <option value="bca">BCA</option>
+                    <option value="be">BE</option>
+                    <option value="bsc">BSc</option>
+                    <option value="ba">BA</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="specialization">Engineering Specialization:</label>
+                <select id="specialization" name="specialization" required>
+                    <option value="">Select your specialization</option>
+                    <option value="cse">CSE</option>
+                    <option value="ise">ISE</option>
+                    <option value="civil">Civil</option>
+                    <option value="ece">ECE</option>
+                    <option value="mech">Mechanical</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="image">Upload Image:</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

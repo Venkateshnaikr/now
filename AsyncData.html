@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>JavaScript Async Data Fetch with Error Handling</title>
+    <style>
+        body{
+            background-color: rgb(188, 190, 182);
+        }
+        #message,
+        #error {
+            font-size: 20px;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        #message {
+            text-align: center;
+            color: green;
+            background-color: #e6ffe6;
+        }
+
+        #error {
+            color: rgb(69, 190, 48);
+            background-color: #ffe6e6;
+        }
+
+        #loading {
+            color: rgb(194, 90, 16);
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #data-container {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            display: none;
+        }
+
+        h2{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>JavaScript Async Data Fetch with Error Handling</h2>
+
+    <button id="fetchButton">Fetch Data</button>
+    <div id="loading"></div>
+    <div id="message"></div>
+    <div id="error"></div>
+    <div id="data-container"></div>
+
+    <script>
+        // Function to simulate asynchronous data fetch with random errors
+        async function fetchData() {
+            return new Promise((resolve, reject) => {
+                document.getElementById("loading").innerText = "Fetching data, please wait...";
+                setTimeout(() => {
+                    const success = Math.random() > 0.3; // 70% chance of success
+                    if (success) {
+                        resolve({ name: "Venkatesh Naik R" , age: 23, location: "India", profession: "Student", hobby: "Photography" });
+                    } else {
+                        reject("Failed to fetch data. Please try again later.");
+                    }
+                }, 2000);
+            });
+        }
+
+        // Function to handle data fetching with try-catch
+        async function handleDataFetch() {
+            document.getElementById("message").innerHTML = "";
+            document.getElementById("error").innerHTML = "";
+            document.getElementById("fetchButton").disabled = true;
+            document.getElementById("data-container").style.display = "none";
+
+            try {
+                const data = await fetchData();
+                document.getElementById("message").innerHTML = "Data fetched successfully!";
+                document.getElementById("data-container").innerHTML = `<strong>Name:</strong> ${data.name}<br>
+                                                                         <strong>Age:</strong> ${data.age}<br>
+                                                                         <strong>Location:</strong> ${data.location}<br>
+                                                                         <strong>Profession:</strong> ${data.profession}<br>
+                                                                         <strong>Hobby:</strong> ${data.hobby}`;
+                document.getElementById("data-container").style.display = "block";
+            } catch (error) {
+                document.getElementById("error").innerHTML = error;
+            } finally {
+                document.getElementById("loading").innerText = ""; // Clear loading message
+                document.getElementById("fetchButton").disabled = false;
+            }
+        }
+
+        // Event listener for button click
+        document.getElementById("fetchButton").addEventListener("click", handleDataFetch);
+    </script>
+
+</body>
+
+</html>
